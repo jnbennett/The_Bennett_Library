@@ -1,0 +1,405 @@
+#HomeApp{
+	background-color: rgb(188, 181, 122);
+}
+
+#BrowseApp{
+	background-color: rgb(188, 181, 122);
+}
+
+#page{
+	background-color: rgb(188, 181, 122);
+}
+
+#header{
+	border-bottom: 1px solid;
+	border-color: white;
+	background-color: rgb(188, 181, 122);
+	padding-top:3em;
+	padding-right: 4em;
+	padding-left: 4em;
+	align-items: baseline;
+}
+
+#body{
+	min-height: 400px;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	background-color: rgb(188, 181, 122);
+	padding-bottom: 1em;
+	padding: 1em;
+}
+	/*.bg{*/
+/*		width: 100%;
+		height: 1500px;
+		background-image: 
+		url('/static/sketch.png');
+	background-size: cover;
+	background-repeat: no-repeat;	
+	background-position: center;*/
+/*}*/
+#brand{
+	font-family: 'Cinzel Decorative', serif;
+	font-size: 40px;
+	color: black;
+	text-shadow: 0px 2px 3px rgb(255, 255, 255, 0.8);
+	font-weight: 500;
+}
+
+#brand:hover{
+	font-family: 'Cinzel Decorative', serif;
+	font-size: 40px;
+	color: black;
+	text-shadow: 3px 3px 2px rgb(255, 255, 255, 0.8);
+	font-weight: 500;
+}
+
+
+#menu-item{
+	color:white;
+	font-family: 'Nanum Myeongjo', serif;
+	font-size: 20px;
+	text-shadow: 0px 0px 1px black;
+	padding-bottom: 0;
+}
+
+#menu-item:hover{
+	border-bottom: 1px solid white; 
+	padding-bottom:0; 
+}
+
+a:active{
+	font-weight: bold;
+	color:;
+}
+
+#menu{
+	vertical-align: text-bottom;
+}
+
+#quote{
+	font-family: 'Cormorant Garamond', serif;
+	font-size: 21px;
+	color: white;
+	margin-top: 5em;
+	width: 800px;
+	text-shadow: 0px 1px 2px black;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	padding: 10px;
+}
+
+#homeSearch{
+	max-width: 400px;
+	margin-top: 3em;
+	background-color: white;
+}
+
+#homeSearch:hover {
+	max-width: 400px;
+	margin-top: 3em;
+	box-shadow: 0 2px 5px 1px rgba(0, 0, 0, .2);
+}
+
+#results{
+	margin-top: 1em;
+}
+
+.book{ 
+	margin: 10px;
+	background-color: rgb(239, 239, 220);
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	box-shadow: 0 2px 5px 1px rgba(0, 0, 0, .2);
+	font-family: 'Cormorant Garamond', serif;
+	line-height: 1;
+}
+
+#book-cover{
+	max-height: 175px;
+	box-shadow: 0 2px 5px 1px rgba(0, 0, 0, .2);
+}
+
+#bookTitle{
+	font-size: 18px;
+	text-align: center;
+	margin: 5px;
+	font-family: 'Cormorant Garamond', serif;
+}
+#bookAuthor{
+	font-family: 'Cormorant Garamond', serif;
+	font-size: 18px;
+}
+
+#bookEditor{
+	font-family: 'Cormorant Garamond', serif;
+	font-size: 14px;
+}
+
+a{
+	font-family: 'Cormorant Garamond', serif;
+	font-size: 16px;
+	margin-bottom: 2px;
+}
+
+.btn-link{
+	margin: 0;
+}
+
+
+.fade-enter{
+	opacity:0;
+	transform: translateX(30px);
+}
+.fade-enter-active{
+ 	transition: opacity 2s;
+ }
+
+ .fade-leave{
+ 	transition: opacity 1s;
+ }	
+
+ .fade-leave-active{
+ 	transition: opacity 1s;
+ 	opacity:0;
+ }
+
+
+hr {
+    border: none;
+    border-top: 4px double #333;
+    color: #333;
+    overflow: visible;
+    text-align: center;
+    height: 5px;
+    margin-top: 1em;
+}
+
+hr:after {
+    content: '§';
+    padding: 0 4px;
+    position: relative;
+    top: -13px;
+}
+
+#detailed-book{
+	min-width: 100%;
+	padding: 1em;
+	font-family: 'Goudy Bookletter 1911', serif;	
+	/*font-family: "Cormorant Garamond", serif;*/
+}
+
+#detailed-cover{
+	box-shadow: 0 2px 5px 1px rgba(0, 0, 0, .2);
+}
+
+#detailed-title{
+	font-size: 35px;
+
+}
+
+#detailed-subtitle{
+	font-size: 25px;
+}
+
+#detailed-author{
+	font-size: 20px;
+}
+
+#detailed-editor{
+	font-size: 16px;
+}
+
+#detailed-translator{
+	font-size: 16px;
+}
+
+#detailed-info{
+	font-size: 18px;
+	margin-top: 1em;
+}
+
+#detailed-summary{
+	font-size: 18px;
+	margin-top: 1em;
+}
+
+#authorName{
+	font-size: 8;
+	padding-left: 1em;
+}
+
+#genre-heading{
+	margin-top: 15px;
+	font-family: 'Cormorant Garamond', serif;
+	font-size: 22px;
+	font-weight: thin;
+	color: white;
+	text-shadow: 0px 0px 2px black;
+	text-align: center;	
+}
+
+#genre-filter{
+	margin-top: 2em;
+	padding-bottom: 0;
+	align-items: baseline;
+}
+
+#genre-select{
+	max-width: 175px;
+	margin-right: 1em;
+}
+
+#genre-select:hover{
+	max-width: 175px;
+	margin-right: 1em;
+	box-shadow: 0 2px 5px 1px rgba(0, 0, 0, .2);
+}
+
+
+#genre-results{
+	margin-top: 5em;
+}
+
+#genre-cover{
+	box-shadow: 0 2px 5px 1px rgba(0, 0, 0, .2);
+}
+
+#genre-book{
+	min-height: 275px;
+	width: 200px;
+	padding: 2em;
+}
+
+#genre-book-title{
+	font-weight: bold;
+	padding-top: 3px;
+	font-family: 'Goudy Bookletter 1911', serif;
+}
+
+#genre-book-author{
+	font-size:14px;
+	font-family: 'Goudy Bookletter 1911', serif;
+}
+
+@media screen and (min-width: 601px){
+	#resource-intro{
+		font-family: "Cormorant Garamond", serif;
+		font-size: 20px;
+		text-align: center;
+		padding-top: 1em;
+		margin-bottom: 2em;
+		border-bottom: 1px solid black;
+		border-top: 1px solid black;
+		margin-left: 5em;
+		margin-right: 5em;
+
+	}
+
+	.resource{
+		display: block;
+		color: white;
+		text-shadow: 0 1px 0 black;
+		box-shadow: 0px 2px 3px rgb(255, 255, 255, 0.8);
+		margin-left: 1em;
+		margin-right: 1em;
+	}
+
+	.card-text{
+		margin-left: 1em;
+		}	
+
+	.card-title{
+		text-shadow: 0 1px 0 black;
+		font-family: 'Libre Baskerville', serif;
+		font-size: 20px;
+	}
+
+	.resource-summary{
+		padding:10px;
+		padding-top: 2em;
+		font-family: 'Baskervville', serif;
+		font-size: 16px;
+
+	}
+}
+
+@media screen and (max-width: 601px){
+	#resource-intro{
+		font-family: "Cormorant Garamond", serif;
+		font-size: 20px;
+		text-align: center;
+		padding-top: 1em;
+		margin-bottom: 2em;
+		border-bottom: 1px solid black;
+		border-top: 1px solid black;
+		max-width: 100%;
+	}
+
+	.resource{
+		display: block;
+		color: white;
+		text-shadow: 0 1px 0 black;
+		box-shadow: 0px 2px 3px rgb(255, 255, 255, 0.8);
+		margin-left: 1em;
+		margin-right: 1em;
+	}
+
+	.card-text{
+		margin-left: 1em;
+	}	
+
+	.card-title{
+		text-shadow: 0 1px 0 black;
+		font-family: 'Libre Baskerville', serif;
+		font-size: 20px;
+	}
+
+	.resource-summary{
+		padding:10px;
+		padding-top: 2em;
+		font-family: 'Baskervville', serif;
+		font-size: 16px;
+	}
+}
+
+#about{
+	margin-bottom: 1em;
+	font-family: 'Cormorant Garamond', serif;
+	font-size:21px;
+	margin-left: 1em;
+	margin-right: 1em;
+	text-indent: 25px;
+	line-height: 1;
+	padding-bottom: 1em;
+	border-bottom: 1px solid black;
+}
+
+#about-title{
+	font-family: 'Cormorant Garamond', serif;
+	font-size: 25px;
+	margin-left: 1em;
+	margin-right: 1em;
+	border-bottom: 1px solid black;
+	margin-bottom: 1em;
+}
+
+#footer{
+	text-align: center;
+	background-color: black;
+	bottom: 0;
+	font-family: 'Cormorant Garamond', serif;
+	color:	white;
+	width: 100%;
+	padding-bottom: 1em;
+	padding-top: 1em;
+}
+
+[v-cloak] {
+	display: none;
+}
+
+html {
+    visibility: visible;
+    opacity: 1;
+}

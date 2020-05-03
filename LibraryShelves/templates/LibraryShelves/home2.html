@@ -1,0 +1,264 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<title>The Bennett Library</title>
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	 <link rel="stylesheet" href="{% static 'LibraryShelves/css/stylesheet.css' %}">
+
+</head>
+<body>
+	<div id='app'>
+		
+    <div id='header'>
+			<h1>The Bennett Library</h1>
+			<h4>A Private Collection</h4>
+		</div>
+   
+    <div class='container'>
+		
+    <nav id='navbar' class="navbar navbar-expand-lg navbar-light bg-light">
+  			<a class="navbar-brand" href="#">Navbar</a>
+  			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    		<span class="navbar-toggler-icon"></span>
+  			</button>
+
+  			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    			<ul class="navbar-nav mr-auto">
+      				<li class="nav-item active">
+        				<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      				</li>
+      				<li class="nav-item">
+        				<a class="nav-link" href="{% url 'LibraryShelves:resources' %}">Resources</a>
+      				</li>
+      				<li class="nav-item dropdown">
+        				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          				Browse
+        				</a>
+        				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+         					<a class="dropdown-item" href="{% url 'LibraryShelves:author' %}">Author</a>
+            			<div class="dropdown-divider"></div>
+         					 <a class="dropdown-item" href="{% url 'LibraryShelves:title' %}">Title</a>
+                </div>
+      				</li> 
+    			</ul>
+  			</div>
+		</nav>
+		
+			<div class='container' id='body'>
+				<div class="row justify-content-center">
+					<div id='homeSearch' class="input-group mb-3">
+  						<input 
+                type="text" 
+                class="form-control" 
+                placeholder="Search the shelves" 
+                aria-label="Search the shelves" 
+                aria-describedby="button-addon2"
+                v-model:value='search'
+                />
+
+                 <!--try to get @keyup working with filteredAuthors and filteredBooks
+                   @keyup='filteredAuthors(); filteredBooks()'
+                 -->
+
+  						<!--<div class="input-group-append">
+    						<button 
+                  class="btn btn-outline-secondary" 
+                  type="button"
+                  id="button-addon2"
+                  v-on:click='searchResults'>
+    						<i class="fas fa-search"></i>
+    						</button>
+ 						</div> -->
+					</div>
+				</div>
+           <!-- <ul>
+          <div v-for="book in filteredBooks">
+            <li class='book'>
+              <div>
+                <h3>${book.title}</h3> 
+              </div>
+              <div>
+               <img v-bind:src='book.cover'>
+             </div>
+             <div class='author' v-for='author in authors'>
+                <h5 v-if='author.pk === book.author'>
+                ${author.first_name} ${author.last_name}</h5>
+              </div>
+
+          
+          </div>
+            <div class='author'> 
+              <div v-for="author in filteredAuthors">
+                <div v-for='book in books'>
+                  <div v-if='author.pk == book.author'>
+                    <img v-bind:src='book.cover'>
+
+                     <div>
+                      <h4> ${book.title} </h4>
+                    </div>
+                    <div>
+                      <h4> ${author.name} </h4>
+                    </div>
+              </div>
+            </div>
+            </div>
+          </div>
+          </li>
+        </div>
+            <li class='book_cover' v-for='cover in bookCovers'>
+              <img v-bind:src='cover'>
+            </li>
+          </ul> -->
+    
+       <!--<div v-for="book in filteredBooks">
+          </div>
+         <div v-for="author in filteredAuthors"> 
+          </div>-->
+        <!--  <ul>
+            <div class='row justify-content-center'>
+            <div class='book' v-for='item in filteredBookShelf'>
+                <div v-for='book in books'>
+                  <div v-if='item == book.author'>
+                    <div class="row no-gutters">
+                     <div>
+                        <img id='book-cover' class='img-fluid' v-bind:src='book.cover'>
+                    </div>  
+                  <div>
+                      <h6 id='bookTitle'>${book.title}</h6>
+                      <div v-for='author in authors'>
+                        <p id= 'authorName' v-if='author.pk == book.author'>${author.first_name} ${author.last_name}</p>
+                      </div>
+                      <p>${book.pub_year}</p>
+                  </div>
+                  </div>
+                  </div>
+                </div>
+                <hr>
+              </div>
+            </div>
+          </ul>-->
+          <!--  <ul>
+            <div class='row justify-content-center'>
+            <div class='book' v-for='item of filteredBooks' v-bind:key='item.bookPK'>
+               <div class="row no-gutters">
+                 <div>
+                    <img id='book-cover' class='img-fluid' v-bind:src='item.cover'>
+                 </div>  
+                  <div>
+                      <h6 id='bookTitle'>${item.title}</h6>
+                  </div>
+                  <div>
+                    ${item.author}
+                </div>
+              </div>
+                <hr>
+            </div>
+          </ul>-->
+        <div id='results'>
+          <div v-if='search == ""'>
+          <ul>
+            <div v-for="book in filteredBooks">
+            <li class='book'>
+              <div>
+                <h3>${book.title}</h3> 
+              </div>
+              <div>
+               <img v-bind:src='book.cover'>
+             </div>
+             <div class='author' v-for='author in authors'>
+                <h5 v-if='author.pk === book.author'>
+                ${author.first_name} ${author.last_name}</h5>
+              </div>
+
+            </li>
+          </div>
+            <li class='author'> 
+              <div v-for="author in filteredAuthors">
+                <div v-for='book in books'>
+                  <div v-if='author.pk == book.author'>
+                    <img v-bind:src='book.cover'>
+
+                     <div>
+                      <h4> ${book.title} </h4>
+                    </div>
+                    <div>
+                      <h4> ${author.name} </h4>
+                    </div>
+              </div>
+            </div>
+            </li>
+           <!-- <li class='book_cover' v-for='cover in bookCovers'>
+              <img v-bind:src='cover'>
+            </li>-->
+          </ul>
+			</div>
+	</div>
+</div>
+<!--</div>-->
+
+         <!-- <div v-for="book in filteredBooks">
+          </div>
+          <div v-for="author in filteredAuthors">
+          </div>
+          <ul>
+            <div class='row justify-content-center row-cols-1 row-cols-md-2'>
+            <div class='card mb-3 book' style="max-width: 400px; max-height: 240px;" v-for='item in filteredBookShelf'>
+              
+                <div v-for='book in books'>
+                  <div v-if='item == book.author'>
+                    <div class="row no-gutters">
+                     <div class="col-md-3">
+                        <img class='img-fluid' v-bind:src='book.cover'>
+                      </div>  
+                  <div class="col-md-9">
+                    <div class='card-body'>
+                      <h6 class='card-title' id='bookTitle'>${book.title}</h6>
+                      <div v-for='author in authors'>
+                        <p class='card-text' id= 'authorName' v-if='author.pk == book.author'>${author.first_name} ${author.last_name}</p>
+                      </div>
+                      <p>${book.pub_year}</p>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </ul>
+      </div>
+    </div>
+  </div> -->
+
+	<div id="footer" class="bg-dark">
+  			<p>
+  				<a href="{% url 'LibraryShelves:about' %}">About</a>
+  			</p>
+  			<p>
+  				Copyright &copy; 2020
+  			</p>
+  			<p>
+  				The Bennett Library
+  			</p>
+  			<p>
+  				Portland, Oregon
+  			</p>
+		</div>
+  </div>
+	
+
+	
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+  <script src="{% static 'LibraryShelves/js/script2.js' %}"></script> 
+</body>
+</html>

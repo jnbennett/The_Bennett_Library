@@ -1,0 +1,398 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>html{visibility: hidden;opacity:0;}</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>The Bennett Library</title>
+  
+  <!-- Google Fonts -->
+   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Libre+Baskerville&family=Vollkorn&display=swap&family=Nanum+Myeongjo:wght@700&family=Goudy+Bookletter+1911&family=Cormorant+Garamond" rel="stylesheet">
+  <!-- Font Awesome -->
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel=" stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.16.0/css/mdb.min.css" rel="stylesheet">
+  <!-- CSS StyleSheet -->
+  <link rel="stylesheet" href="{% static 'LibraryShelves/css/stylesheet.css' %}">
+
+</head>
+<body>
+  <div id='HomeApp' v-cloak>
+    <div class='container' id='page'>
+      <div  id='header' class='row'>
+        <div>
+          <a id='brand' class="nav-link col active" href="{% url 'LibraryShelves:home' %}">The Bennett Library</a>
+        </div>
+        <ul class='nav col justify-content-end'>
+          <li class="nav-item">
+            <a id='menu-item' class='nav-link' href="{% url 'LibraryShelves:browse' %}">Browse</a>
+          </li>
+          <li class="nav-item">
+            <a id='menu-item' class="nav-link" href="{% url 'LibraryShelves:resources' %}">Resource
+            </a>
+          </li>
+          <li class='nav-item'>
+            <a id='menu-item' class='nav-link' href="{% url 'LibraryShelves:about' %}">About</a>
+          </li>
+         </ul>
+        </div>
+      <div id='body'>
+        <div id='resource-intro' class='row align-items-center'>
+          <div>
+            <p>
+                Books were the proto-internet. References upon cross-references intertwining into an ever dense forest of knowledge and experience. Today, we can jump through centuries of cross-references via hyperlinks. I hope these resources might ignite curiosity in others as much as they have   for me.
+            </p>
+          </div>
+        </div> 
+          <div class="row row-cols-1 row-cols-md-3">
+            <div class='col mb-4'>
+              <div class="card resource view overlay" style="max-height: 300px">  
+                <img src='{% static "/midsummer.jpg" %}' class='img-fluid'>    
+                <div class="card-body card-img-overlay">
+                  <h5 class="card-title resource-title">edX</h5>
+                  <div class="resource-summary mask flex-center text-white text-justify-center rgba-black-strong d-flex align-items-center">
+                    <p >
+                      Access to thousands of courses from top universities for free.
+                    </p>
+                    <a 
+                      href="https://www.edx.org/" 
+                      class="stretched-link" 
+                      target="_blank">                  
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p class="card-text"><small class="text-muted">Education</small></p>
+              </div>
+            </div>
+            <div class='col mb-4'>
+              <div class="card resource view overlay" style="max-height: 300px">
+                <img src='{% static "/windy-day.jpg" %}' class='img-fluid' alt='Responsive image'>
+                <div class="card-body card-img-overlay">
+                  <h5 class="card-title black resource-title">Etymonline</h5>
+                  <div class=" resource-summary mask flex-center text-white text-justify-center rgba-black-strong d-flex align-items-center">
+                    <p>
+                      This is a map of the wheel-ruts of modern English. Etymologies are not definitions; they're explanations of what our words meant and how they sounded 600 or 2,000 years ago.
+                    </p>
+                    <a 
+                      href="https://www.etymonline.com/" 
+                      class="stretched-link" 
+                      target="_blank">    
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div>
+               <p class="card-text"><small class="text-muted">Reference</small></p>
+              </div>
+            </div>
+            <div class='col mb-4'>
+              <div class="card resource view overlay" style="max-height: 300px;">
+                <img src='{% static "/script_1.jpg" %}' class='img-fluid' alt='Responsive image'>
+                <div class="card-body card-img-overlay">
+                  <h5 class="card-title resource-title">Project Gutenberg</h5>
+                  <div class="resource-summary mask flex-center text-white text-justify-center rgba-black-strong d-flex align-items-center">
+                    <p>
+                      Project Gutenberg is a library of over 60,000 free eBooks. Choose among free epub and Kindle eBooks, download them or read them online.
+                    </p>
+                    <a 
+                      href="https://www.gutenberg.org/" 
+                      class='stretched-link' 
+                      target="_blank">    
+                    </a>           
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p class="card-text"><small class="text-muted">Literature</small></p>
+              </div>
+            </div>
+            <div class='col mb-4'> 
+              <div class="card resource view overlay" style="max-height: 200px;">
+                <img src='{% static "/oldbooks.jpg" %}' class='img-fluid card-img' alt='Responsive image'>
+                <div class="card-body card-img-overlay">
+                  <h5 class="card-title resource-title">Bosworth-Toller Anglo-Saxon Dictionary</h5>
+                  <div class="resource-summary mask flex-center text-white text-center rgba-black-strong d-flex align-items-center">
+                  <p>
+                    This is an online edition of An Anglo-Saxon Dictionary. The dictionary records the state of the English language as it was used between ca. 700-1100 AD.
+                  </p>
+                  <a 
+                    href="http://bosworth.ff.cuni.cz/" 
+                    class="stretched-link" 
+                    target="_blank">                    
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div>
+             <p class="card-text"><small class="text-muted">Reference</small></p>
+            </div>
+          </div>
+          <div class='col mb-4'>
+            <div class="card resource view overlay" style="max-height: 200px;">
+              <img src='{% static "/devout_maiden.jpg" %}' class='img-fluid card-img' alt='Responsive image'>
+              <div class="card-body card-img-overlay">
+                <h5 class=" card-title resource-title">British Library Digital Collections</h5>
+                <div class="resource-summary mask flex-center text-white text-justify-center rgba-black-strong d-flex align-items-center"> 
+                  <p>
+                    The British Library is the national library of the United Kingdom. Explore digital manuscripts and listen to recordings of different dialects or famous authors.
+                  </p>
+                  <a 
+                    href="https://www.bl.uk/catalogues-and-collections/digital-collections#"
+                    class="stretched-link" 
+                    target="_blank">      
+                  </a>
+                </div>
+              </div>
+            </div>
+          <div >  
+            <p class="card-text"><small class="text-muted">Reference</small></p>
+          </div>
+        </div>
+        <div class='col mb-4'>
+          <div class="card resource view overlay" style="max-height: 200px;">
+            <img src='{% static "/the-great-wave-kanagawa.jpg" %}' class='img-fluid card-img' alt='Responsive image'>
+            <div class="card-body card-img-overlay">
+              <h5 class="card-title resource-title">Perseus Digital Library</h5>
+              <div class="resource-summary mask flex-center text-white text-justify-center rgba-black-strong d-flex align-items-center">
+                <p>
+                  The Perseus Digital Libary's mission is to make the full record of humanity as intellectually accessible as possible to every human being.
+                </p>
+                <a 
+                  href="https://www.perseus.tufts.edu/hopper/" 
+                  class="stretched-link" 
+                  target="_blank">                 
+                </a>
+              </div>
+            </div>
+          </div>
+        <div>
+          <p class="card-text"><small class="text-muted">Reference</small></p>
+        </div>
+      </div>
+      <div class='col mb-4'>
+        <div class="card resource view overlay" style="max-height: 300px">       
+          <img src='{% static "/script_2.jpg" %}' class='img-fluid card-img-top' alt='Responsive image'>
+          <div class="card-body card-img-overlay">
+            <h5 class="card-title resource-title">Khan Academy</h5>
+            <div class="resource-summary mask flex-center text-white text-justify-center rgba-black-strong d-flex align-items-center">
+              <p>
+                Khan Academy offers practice exercises, instructional videos, and a personalized learning dashboard that empower learners to study at their own pace in and outside of the classroom.
+              </p>
+              <a 
+                href="https://www.khanacademy.org/" 
+                class="stretched-link" 
+                target="_blank">
+              </a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="card-text"><small class="text-muted">Education</small></p>
+        </div>
+      </div>
+      <div class='col mb-4'>
+        <div class="card resource view overlay" style="max-height: 300px">
+          <img src='{% static "/q.jpg" %}' class='img-fluid' alt='Responsive image'>
+          <div class="card-body card-img-overlay">
+            <h5 class="card-title resource-title">Think Python</h5>
+            <div class=" resource-summary mask flex-center text-white text-justify-center rgba-black-strong d-flex align-items-center">
+              <p>
+                Think Python is an introduction to Python programming for beginners. It starts with basic concepts of programming, and is carefully designed to define all terms when they are first used and to develop each new concept in a logical progression.
+              </p>
+              <a 
+                href="http://greenteapress.com/thinkpython2/html/index.html" 
+                class="stretched-link" 
+                target="_blank">                
+              </a>
+            </div>
+          </div>
+          </div>
+          <div>
+            <p class="card-text"><small class="text-muted">Education</small></p>
+          </div>
+        </div>
+        <div class='col mb-4'>
+          <div class="card resource view overlay" style="max-height: 300px;">
+            <img src='{% static "/all-alone.jpg" %}' class='img-fluid' alt='Responsive image'>
+            <div class="card-body card-img-overlay">
+              <h5 class="card-title resource-title">Automate the Boring Stuff</h5>
+              <div class="resource-summary mask flex-center text-white text-justify-center rgba-black-strong d-flex align-items-center">
+                <p>
+                  In Automate the Boring Stuff with Python, you'll learn how to use Python to write programs that do in minutes what would take you hours to do by hand-no prior programming experience required.
+                </p>
+                <a 
+                  href="https://automatetheboringstuff.com/" 
+                  class='stretched-link' 
+                  target="_blank">
+                </a>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="card-text"><small class="text-muted">Education</small></p>
+          </div>
+        </div>
+        <div class='col mb-4'>
+          <div class="card resource view overlay" style="max-height: 200px;">
+            <img src='{% static "/trinity.jpg" %}' class='img-fluid' alt='Responsive image'>
+            <div class="card-body card-img-overlay">
+              <h5 class="card-title resource-title">Middle English Dictionary</h5>
+              <div class="resource-summary mask flex-center text-white text-justify-center rgba-black-strong d-flex align-items-center">
+                <p>
+                  The world's largest searchable database of Middle English lexicon and usage for the period 1100=1500.
+                </p>
+                <a 
+                  href="https://quod.lib.umich.edu/m/middle-english-dictionary/dictionary" 
+                  class='stretched-link' 
+                  target="_blank">  
+                </a>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="card-text"><small class="text-muted">Reference</small></p>
+          </div>
+        </div>
+        <div class='col mb-4'>
+          <div class="card resource view overlay" style="max-height: 200px">
+            <img src='{% static "/midsummer.jpg" %}' class='img-fluid card-img-top' alt='Responsive image'>
+            <div class="card-body card-img-overlay">
+              <h5 class="card-title resource-title">Eloquent Javascript</h5>
+              <div class="resource-summary mask flex-center text-white text-justify-center rgba-black-strong d-flex align-items-center">
+                <p >
+                  This book teaches the fundamentals of computer programming through Javascript.
+                </p>
+                <a 
+                  href="https://eloquentjavascript.net/"
+                  class="stretched-link" 
+                  target="_blank">  
+                </a>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="card-text"><small class="text-muted">Education</small></p>
+          </div>
+        </div>
+        <div class='col mb-4'>
+          <div class="card resource view overlay" style="max-height: 200px">
+            <img src='{% static "/dickens.jpg" %}' class='img-fluid' alt='Responsive image'>
+            <div class="card-body card-img-overlay">
+              <h5 class="card-title resource-title">French in Action</h5>
+              <div class=" resource-summary mask flex-center text-white text-justify-center rgba-black-strong d-flex align-items-center">
+                <p>
+                  This series uses active participation to increase fluency in French, while introducing French culture. Pierre Capretz’s proven language-immersion method is presented within a humorous teleplay with native speakers of all ages and backgrounds
+                </p>
+                <a 
+                  href="https://www.learner.org/series/french-in-action/" 
+                  class="stretched-link" 
+                  target="_blank">
+                </a>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="card-text"><small class="text-muted">Education</small></p>
+          </div>
+        </div>
+        <div class='col mb-4'> 
+          <div class="card resource view overlay" style="max-height: 300px;">
+            <img src='{% static "/sketch.png" %}' class='img-fluid card-img' alt='Responsive image'>
+            <div class="card-body card-img-overlay">
+              <h5 class="card-title resource-title">freeCodeCamp</h5>
+              <div class="resource-summary mask flex-center text-white text-center rgba-black-strong d-flex align-items-center">
+                <p>
+                  freeCodeCamp teaches the basics of web-development by completeing coding challenges and building projects covering javascript, html5, css3, responsive web design, and more.
+                </p>
+                <a 
+                  href="https://www.freecodecamp.org/" 
+                  class="stretched-link" 
+                  target="_blank">    
+                </a>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="card-text"><small class="text-muted">Education</small></p>
+          </div>
+          </div>
+          <div class='col mb-4'> 
+            <div class="card resource view overlay" style="max-height: 300px;">
+              <img src='{% static "/all-alone.jpg" %}' class='img-fluid card-img' alt='Responsive image'>
+              <div class="card-body card-img-overlay">
+                <h5 class="card-title resource-title">Open Canterbury Tales</h5>
+                <div class="resource-summary mask flex-center text-white text-center rgba-black-strong d-flex align-items-center">
+                  <p>
+                    The Open Access Companion to the Canterbury Tales (OACCT) is a volume of introductory chapters for first-time, university-level readers of Geoffrey Chaucer’s The Canterbury Tale
+                  </p>
+                  <a 
+                    href="https://opencanterburytales.dsl.lsu.edu/" 
+                    class="stretched-link" 
+                    target="_blank">  
+                  </a>
+                </div>
+              </div>
+            </div> 
+            <div>
+              <p class="card-text"><small class="text-muted">Reference</small></p>
+            </div>
+          </div>
+          <div class='col mb-4'> 
+            <div class="card resource view overlay" style="max-height: 300px;">
+              <img src='{% static "/q.jpg" %}' class='img-fluid card-img' alt='Responsive image'>
+              <div class="card-body card-img-overlay">
+                <h5 class="card-title resource-title">Google Scholar</h5>
+                <div class="resource-summary mask flex-center text-white text-center rgba-black-strong d-flex align-items-center">
+                  <p>
+                    Google Scholar provides a simple way to broadly search for scholarly literature. From one place, you can search across many disciplines and sources: articles, theses, books, abstracts and court opinions, from academic publishers, professional societies, online repositories, universities and other web sites.
+                  </p>
+                  <a 
+                    href="https://scholar.google.com/" 
+                    class="stretched-link" 
+                    target="_blank"> 
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div>
+              <p class="card-text"><small class="text-muted">Reference</small></p>
+            </div>
+          </div> 
+        </div> 
+      </div> 
+    </div>
+    <div id="footer">
+      <p>
+        Copyright &copy; 2020
+      </p>
+      <p>
+        The Bennett Library
+      </p>
+      <p>
+         Portland, Oregon
+      </p>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.16.0/js/mdb.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+  <script src="{% static 'LibraryShelves/js/script.js' %}"></script> 
+</body>
+</html>

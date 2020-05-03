@@ -1,0 +1,234 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>html{visibility: hidden;opacity:0;}</style>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<title>The Bennett Library</title>
+	
+  <!-- Google Fonts -->
+   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Libre+Baskerville&family=Vollkorn&display=swap&family=Nanum+Myeongjo:wght@700&family=Goudy+Bookletter+1911&family=Cormorant+Garamond" rel="stylesheet">
+  <!-- Font Awesome -->
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel=" stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.16.0/css/mdb.min.css" rel="stylesheet">
+  <!-- CSS StyleSheet -->
+  <link rel="stylesheet" href="{% static 'LibraryShelves/css/stylesheet.css' %}">
+
+</head>
+<body>
+  <div id='BrowseApp' v-cloak>
+    <div class='container' id='page'>
+      <div  id='header' class='row'>
+        <div>
+          <a id='brand' class="nav-link col active" href="{% url 'LibraryShelves:home' %}">The Bennett Library</a>
+        </div>
+         <ul class='nav col justify-content-end'>
+          <li class="nav-item">
+            <a id='menu-item' class='nav-link' href="{% url 'LibraryShelves:browse' %}">Browse</a>
+          </li>
+          <li class="nav-item">
+            <a id='menu-item' class="nav-link" href="{% url 'LibraryShelves:resources' %}">Resource
+            </a>
+          </li>
+          <li class='nav-item'>
+            <a id='menu-item' class='nav-link' href="{% url 'LibraryShelves:about' %}">About</a>
+           </li>
+         </ul>
+      </div> 
+		  <div class='container' id='body'>
+        <div class='row justify-content-center' id='genre-heading'>
+          <p>
+            For those just wanting to peruse or mosey about my books.
+            <br>And for those seeking for inspiration or way to pass the time of day.
+            <br>Here's the place for you.
+          </p>
+        </div>
+        <div class='row justify-content-center align-bottom' id='genre-filter'>
+          <select 
+            v-model='genre' 
+            id='genre-select'
+            class="custom-select custom-select-sm align-bottom"
+            @keyup.enter='getBooks'
+          >
+            <option selected>Browse by</option>
+            <option
+              v-for='genre in genres'>
+              ${genre.category}
+            </option>
+          </select>
+          <button 
+            type="button" 
+            class="btn white btn-sm align-bottom"
+            @click='getBooks'
+          >filter</button>
+        </div>
+        <div class="row row-cols-1 row-cols-md-5 justify-content-center" id="genre-results">
+          <div v-for='item of bookShelf' v-bind:key='item.bookPK' id='genre-book'>
+            <div class="view overlay">
+              <img id='genre-cover' class='img-fluid' v-bind:src='item.cover'>
+              <div class='mask rgba-grey-strong'>
+                 <button 
+                  id="genre-mask-button" 
+                  type="submit" 
+                  style= "background-color: transparent; border: none;" 
+                  class="btn-sm stretched-link" 
+                  data-toggle='modal' 
+                  data-target='#detailed-book'
+                  @click='bookDetail'
+                  :id="item.bookPK"
+                > 
+                </button>
+              </div>
+            </div>
+            <div id="genre-book-title" >
+             ${item.title}
+            </div>
+            <div id='genre-book-author'>
+             ${item.author}
+            </div>
+          </div>
+
+          <div 
+          class="modal fade" 
+          id="detailed-book" 
+          tabindex="-1" 
+          role="dialog" 
+          aria-labelledby="detailed-book"
+          aria-hidden="true"
+          >
+            <div class="modal-dialog" role="document" id="details-container">
+              <div class="modal-content container-fluid align-content-center" id="detailed-book">
+                <button
+                  type="button" 
+                  class="close modal-header justify-content-end" 
+                  data-dismiss="modal" 
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="row">
+                  <div class="col-md-4">
+                    <img id="detailed-cover" class='img-fluid' v-bind:src='detailedBook.cover'>
+                  </div>
+                  <div
+                    class="col-md-8" 
+                    id="detailed-heading"
+                  >
+                    <div>
+                      <h5 id="detailed-title">${detailedBook.title}</h5>
+                    </div>
+                    <div>
+                      <h6 
+                        v-if="detailedBook.subtitle != '' " 
+                        id='detailed-subtitle'
+                      >
+                        ${detailedBook.subtitle}
+                      </h6>
+                    </div>
+                    <div 
+                      v-if="detailedAuthor.published_name" 
+                      id="detailed-author"
+                    > 
+                      <p> by ${detailedAuthor.published_name} </p>
+                    </div>
+                    <div 
+                      v-if="detailedBook.editor != ''" 
+                      id="detailed-editor"
+                    >
+                    <div v-for="item of detailedBook.editor">
+                      <span>${item.published_name} (editor)</span>
+                    </div>
+                    </div>
+                    <div 
+                      v-for="item of detailedBook.translator" 
+                      id='detailed-translator'
+                    >
+                      <div >
+                        ${item.published_name} (translator)
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+                <div id="detailed-info">
+                  <div class="row">
+                  <div class="col-2">Publisher:</div>
+                    <div class="col-10" id='detailed-publish'>
+                      ${detailedBook.publisher}, ${detailedBook.pub_year}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-2">Binding:</div>
+                    <div class="col-10" id='detailed-publish'>
+                      ${detailedBook.book_format}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-2">Pages:</div>
+                    <div class="col-10" id='detailed-publish'>
+                      ${detailedBook.pages}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-2">Language:</div>
+                    <div class="col-10"id='language'>
+                      ${detailedBook.language}
+                    </div>
+                  </div>  
+                  <div class="row">
+                    <div class='col-2'>ISBN:</div>
+                    <div class="col-10" id='isbn'>
+                      ${detailedBook.isbn}
+                    </div>
+                  </div>
+                </div>
+                <div class="row" id='detailed-summary'>
+                  <div class="col">
+                    <h4>Summary</h4>
+                    <p>
+                      ${detailedBook.summary}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer">
+  		<p>
+  			Copyright &copy; 2020
+  		</p>
+  		<p>
+  			The Bennett Library
+  		</p>
+  		<p>
+  			Portland, Oregon
+  		</p>
+		</div>
+  </div>
+	
+
+	
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.16.0/js/mdb.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+  <script src="{% static 'LibraryShelves/js/browse.js' %}"></script> 
+</body>
+</html>

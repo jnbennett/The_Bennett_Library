@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>html{visibility: hidden;opacity:0;}</style>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<title>The Bennett Library</title>
+	
+  <!-- Google Fonts -->
+   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Libre+Baskerville&family=Vollkorn&display=swap&family=Nanum+Myeongjo:wght@700&family=Goudy+Bookletter+1911&family=Cormorant+Garamond" rel="stylesheet">
+  <!-- Font Awesome -->
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel=" stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.16.0/css/mdb.min.css" rel="stylesheet">
+  <!-- CSS StyleSheet -->
+  <link rel="stylesheet" href="{% static 'LibraryShelves/css/stylesheet.css' %}">
+
+</head>
+
+<body>
+
+	<div id='HomeApp' v-cloak>
+    <div class='container' id='page'>
+      <div  id='header' class='row'>
+        <div>
+          <a id='brand' class="nav-link col active" href="{% url 'LibraryShelves:home' %}">The Bennett Library</a>
+        </div>
+         <ul class='nav col justify-content-end'>
+          <li class="nav-item">
+            <a id='menu-item' class='nav-link' href="{% url 'LibraryShelves:browse' %}">Browse</a>
+          </li>
+          <li class="nav-item">
+            <a id='menu-item' class="nav-link" href="{% url 'LibraryShelves:resources' %}">Resource
+            </a>
+          </li>
+          <li class='nav-item'>
+            <a id='menu-item' class='nav-link' href="{% url 'LibraryShelves:about' %}">About</a>
+           </li>
+         </ul>
+      </div>
+
+      <div id='body'>
+        <div id='about-title'>
+          <h1>About</h1>
+        </div>
+        <div id='about'>
+          <p>
+            Before there were public libraries funded through tax-payer dollars, the earliest libraries were private. In ancient and medieval times, libraries were primarily found amongst the ruling class. As books came to be printed on paper, rather than scripted on vellum, more and more people came to acquire their very own book collections.
+          </p>
+          <p>
+            People with larger collections would allow the public to borrow books if they paid a yearly   subscription. Behind the idea of a library is the belif that access to learning through books is foundational to having an educated public. No democratic republic could sustain itself without widespread literacy and access to information. 
+          </p>
+          <p>
+            Maybe someday a co-op of private libraries will exist, where anyone who is paid member can list any books for other members to borrow. This project is the seed to my vision of a coalition of private libaries that may one day sprout into a new form of library.
+          </p>
+        </div>
+      </div> 
+      </div>
+
+    <div id="footer">
+      <p>
+      Copyright &copy; 2020
+      </p>
+      <p>
+      The Bennett Library
+      </p>
+      <p>
+      Portland, Oregon
+      </p>
+    </div>
+  </div>
+ 
+	
+
+	
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+  <script src="{% static 'LibraryShelves/js/script.js' %}"></script> 
+</body>
+</html>

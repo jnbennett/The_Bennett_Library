@@ -1,0 +1,256 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <style>html{visibility: hidden;opacity:0;}</style>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<title>The Bennett Library</title>
+	
+	  <!-- Google Fonts -->
+   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Libre+Baskerville&family=Vollkorn&display=swap&family=Nanum+Myeongjo:wght@700&family=Goudy+Bookletter+1911&family=Cormorant+Garamond" rel="stylesheet">
+  <!-- Font Awesome -->
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel=" stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.16.0/css/mdb.min.css" rel="stylesheet">
+  <!-- CSS StyleSheet -->
+  <link rel="stylesheet" href="{% static 'LibraryShelves/css/stylesheet.css' %}">
+
+</head>
+
+  <body>
+    <div id='HomeApp' v-cloak>
+      <div class='container' id='page'>
+        <div  id='header' class='row'>
+          <div>
+           <a id='brand' class="nav-link col active" href="{% url 'LibraryShelves:home' %}">The    Bennett Library</a>
+          </div>
+          <ul class='nav col justify-content-end'>
+            <li class="nav-item">
+              <a id='menu-item' class='nav-link' href="{% url 'LibraryShelves:browse' %}">Browse</a>
+            </li>
+            <li class="nav-item">
+              <a id='menu-item' class="nav-link" href="{% url 'LibraryShelves:resources' %}">Resource
+              </a>
+            </li>
+            <li class='nav-item'>
+              <a id='menu-item' class='nav-link' href="{% url 'LibraryShelves:about' %}">About</a>
+            </li>
+          </ul>
+        </div>    
+        <div id='body'>
+          <div class="row justify-content-center">
+				    <div id='homeSearch' class="input-group mb-3 rounded-pill">
+  				    <input 
+                type="text" 
+                class="form-control bg-transparent rounded-pill" 
+                placeholder="Search the shelves" 
+                aria-label="Search the shelves" 
+                aria-describedby="button-addon2"
+                v-model='search'
+              />
+              <span class="input-group-append">
+                <button class="btn-sm input-group-text rounded-pill bg-transparent border-0 ml-n5" type="button">
+                    <i class="fa fa-search"></i>
+                </button>
+              </span>
+				    </div>
+          </div>
+          <div id='results' class='container'>
+            <div v-if="search == ''"></div>
+            <div v-else>
+              <transition-group 
+                name="fade"
+                mode="out-in"
+                class="book_shelf justify-content-center row row-cols-1 row-cols-md-5"
+              >
+                <span
+                  class='book' 
+                  v-for='item of filteredBooks' 
+                  v-bind:key='item.bookPK'
+                >
+                  <div class="row justify-content-center">
+                    <img id='book-cover' class='img-fluid' v-bind:src='item.cover'>
+                  </div>    
+                  <div class="row justify-content-center">
+                    <p id='bookTitle'>
+                      ${item.title}
+                    </p>
+                  </div>
+                  <div v-if="item.author">
+                    <div class="row justify-content-center">
+                      <p id="bookAuthor">
+                        by ${item.author}
+                      </p>   
+                    </div>
+                  </div>  
+                  <div v-if='item.author === ""'>
+                    <div  
+                      class="row justify-content-center" 
+                      id="bookEditor" 
+                      v-for="item of item.editors"
+                    >
+                      ${item.published_name} (editor)
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row justify-content-center ">
+                    <button
+                      class="btn btn-link"
+                      type="button"
+                      data-toggle='modal' 
+                      data-target='#detailed-book'
+                      @click='bookDetail'
+                      :id="item.bookPK"
+                    >
+                      Book Details
+                    </button>
+                  </div>
+                  <div 
+                    class="modal fade" 
+                    id="detailed-book" 
+                    tabindex="-1" 
+                    role="dialog" 
+                    aria-labelledby="detailed-book" 
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog" role="document">
+                      <div 
+                        class="modal-content container-fluid align-content-center"
+                        id="detailed-book"
+                      >
+                        <button 
+                          type="button" 
+                          class="close modal-header justify-content-end" 
+                          data-dismiss="modal" 
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="row">
+                          <div class="col-md-4">
+                            <img id="detailed-cover" class='img-fluid' v-bind:src='detailedBook.cover'>
+                          </div>
+                          <div class="col-md-8" id="detailed-heading">
+                            <div>
+                              <h5 id="detailed-title">${detailedBook.title}</h5>
+                            </div>
+                            <div>
+                              <h6 
+                                v-if="detailedBook.subtitle != '' " 
+                                id='detailed-subtitle'
+                              >
+                                ${detailedBook.subtitle}
+                              </h6>
+                            </div>
+                            <div 
+                              v-if="detailedAuthor.published_name" 
+                                id="detailed-author"
+                            > 
+                              <p> 
+                                by ${detailedAuthor.published_name} 
+                              </p>
+                            </div>
+                            <div 
+                              v-if="detailedBook.editor != ''" 
+                              id="detailed-editor"
+                            >
+                              <div v-for="item of detailedBook.editor">
+                                <span>
+                                  ${item.published_name} (editor)
+                                </span>
+                              </div>
+                            </div>
+                            <div v-for="item of detailedBook.translator" id='detailed-translator'>
+                              <div >
+                                ${item.published_name} (translator)
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div id="detailed-info">
+                          <div class="row">
+                            <div class="col-2">Publisher:</div>
+                            <div class="col-10" id='detailed-publish'>
+                              ${detailedBook.publisher}, ${detailedBook.pub_year}
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-2">Binding:</div>
+                            <div class="col-10" id='detailed-publish'>
+                              ${detailedBook.book_format}
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-2">Pages:</div>
+                            <div class="col-10" id='detailed-publish'>
+                              ${detailedBook.pages}
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-2">Language:</div>
+                            <div class="col-10"id='language'>
+                              ${detailedBook.language}
+                            </div>
+                          </div>  
+                          <div class="row">
+                            <div class='col-2'>ISBN:</div>
+                            <div class="col-10" id='isbn'>
+                              ${detailedBook.isbn}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row" id='detailed-summary'>
+                          <div class="col">
+                            <h4>Summary</h4>
+                            <p>
+                            ${detailedBook.summary}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </span>
+              </transition-group>
+            </div>
+          </div>
+          <div  class='row justify-content-center'>    
+            <blockquote id='quote'> 
+              "These are not books, lumps of lifeless paper, but minds alive on the shelves. From each of them goes out its own voice... and just as the touch of a button on our set will fill the room with music, so by taking down one of these volumes and opening it, one can call into range the voice of a man far distant in time and space, and hear him speaking to us, mind to mind, heart to heart."
+              <h5>-Gilbert Highet</h5>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+      <div id="footer">
+  			<p>
+  				Copyright &copy; 2020
+  			</p>
+  			<p>
+  				The Bennett Library
+  			</p>
+  			<p>
+  				Portland, Oregon
+  			</p>
+		  </div>
+    </div>
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <!-- bootstrap Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <!-- Bootstrap Main -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous" ></script>
+    <!-- Vue.js 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+    <!-- Main Script -->
+    <script src="{% static 'LibraryShelves/js/script.js' %}"></script> 
+  </body>
+</html>  
